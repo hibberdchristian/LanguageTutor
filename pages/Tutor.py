@@ -31,6 +31,8 @@ elif authentication_status == False:
 elif authentication_status == None:
     st.sidebar.warning('Please enter your username and password')
 
+language = st.sidebar.selectbox("#### Language", ["English", "中文"])
+
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []

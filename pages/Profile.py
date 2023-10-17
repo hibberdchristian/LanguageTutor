@@ -1,6 +1,31 @@
 import streamlit as st
+import streamlit_authenticator as stauth
 import pandas as pd
 import numpy as np
+import yaml
+from yaml import SafeLoader
+with open ("config.yaml") as file:
+    config = yaml.load(file, Loader=SafeLoader)
+
+authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
+
+name, authentication_status, username = authenticator.login('Login', 'sidebar')
+
+if authentication_status:
+    authenticator.logout('Logout', 'sidebar')
+    st.sidebar.write(f'Welcome *{name}*',)
+elif authentication_status == False:
+    st.sidebar.error('Username/password is incorrect')
+elif authentication_status == None:
+    st.sidebar.warning('Please enter your username and password')
+
+language = st.sidebar.selectbox("#### Language", ["English", "中文"])
 
 chart_data = pd.DataFrame(
     np.random.randint(0, 50, size=(12, 3)),

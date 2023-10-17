@@ -1,9 +1,32 @@
 import streamlit as st
+import streamlit_authenticator as stauth
 from streamlit_option_menu import option_menu
 import scripts.transcript as transcript
 from youtube_transcript_api import YouTubeTranscriptApi
+import yaml
+from yaml import SafeLoader
+with open ("config.yaml") as file:
+    config = yaml.load(file, Loader=SafeLoader)
 
-st.set_page_config(page_title = "AI Interviewer", layout = "wide")
+st.set_page_config(layout = "wide")
+
+authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
+
+name, authentication_status, username = authenticator.login('Login', 'sidebar')
+
+if authentication_status:
+    authenticator.logout('Logout', 'sidebar')
+    st.sidebar.write(f'Welcome *{name}*',)
+elif authentication_status == False:
+    st.sidebar.error('Username/password is incorrect')
+elif authentication_status == None:
+    st.sidebar.warning('Please enter your username and password')
 
 language = st.sidebar.selectbox("#### Language", ["English", "中文"])
 
@@ -15,8 +38,8 @@ if language == "English":
     # )
     st.markdown(f"""# {home_title} <span style=color:#2E9BF5><font size=5>Beta</font></span>""",unsafe_allow_html=True)
     st.markdown("""\n""")
-    st.markdown("Welcome to Flow Language Learning! We here to support you all the way on your journey to fluency."
-                "Flow take real-world content such as Videos, Podcasts, and Blogs and integrates them into an immersive learning environment."
+    st.markdown("Welcome to Flow Language Learning! We here to support you all the way on your journey to fluency. "
+                "Flow take real-world content such as Videos, Podcasts, and Blogs and integrates them into an immersive learning environment. "
                 "Got questions, need a few example sentences? Ask our AI Language Tutor Flow 👋")
     st.markdown("""\n""")
     st.markdown("#### Get started!")
@@ -70,8 +93,22 @@ if language == "English":
 
             # Present the Transcript
             audio_transcript = transcript.transcribe_audio(audio)
-            with st.expander("Full Transcript"):
+            with col1.expander("Full Transcript"):
                 st.markdown(audio_transcript)
+
+            # Present a Summary
+            col2.markdown("""\n""")
+            col2.markdown("#### Summary")
+            audio_summary = transcript.summarize(audio_transcript)
+            col2.markdown(audio_summary)
+
+            # Present the Difficult Words
+            rare_words = transcript.extract_rare_words(audio_transcript, 3.5)
+            if rare_words:
+                col2.markdown("#### Words")
+                for rare_word in rare_words:
+                    expander = col2.expander(f"{rare_word.word}")
+                    expander.write(f"**Definition**: {rare_word.definition}")
 
     if selected == 'Written':
         # Get Article URL
