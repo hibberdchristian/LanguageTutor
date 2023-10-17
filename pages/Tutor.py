@@ -38,11 +38,11 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # Generate a response from the Google Flan T5 XXL Model
-def generate_response(input_text):
+def generate_response(input_text, temp):
     completion = openai.ChatCompletion.create(
         engine = "gpt-35-turbo",
         max_tokens = 500,
-        temperature = 0.5,
+        temperature = temp,
         messages = [
             {"role": "assistant", "content": "You are a helpful language tutor"},
             {"role": "user", "content": input_text}
@@ -57,7 +57,7 @@ def chat(input_text):
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": input_text})
 
-    response = generate_response(input_text)
+    response = generate_response(input_text, 0.5)
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
         st.markdown(response)

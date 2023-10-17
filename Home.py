@@ -7,6 +7,8 @@ import yaml
 from yaml import SafeLoader
 with open ("config.yaml") as file:
     config = yaml.load(file, Loader=SafeLoader)
+from pages.Tutor import generate_response
+import json
 
 st.set_page_config(layout = "wide")
 
@@ -81,6 +83,18 @@ if language == "English":
                 for rare_word in rare_words:
                     expander = col2.expander(f"{rare_word.word}")
                     expander.write(f"**Definition**: {rare_word.definition}")
+
+            # Present the Test
+            prompt = "Can you create 5 simple test questions based on the following transcript: " + \
+                parsed_transcript + \
+                "Your response should be in the form of an undeclared Python List of Dictionaries with 2 keys: Question, Answer." + \
+                "In your response just provide the list, nothing else such that I can use the json.loads function to parse it."
+            test_questions = generate_response(prompt, 0.2)
+            test_questions_list = json.loads(test_questions)
+            st.markdown("#### Test")
+            for i, question in enumerate(test_questions_list):
+                with st.expander(f"Question {i+1}: {question['Question']}"):
+                    st.markdown(question['Answer'])
 
     if selected == 'Audio':
         # Upload audio file
