@@ -1,0 +1,13 @@
+credentials:
+  usernames:
+    christianhibberd:
+      email: hibberdchristian@gmail.com
+      name: Christian
+      password: $2b$12$noFJD0XeFuOFFYUmyrRjBOjy9dY4LT/s2CCPoYnFyuv7Kp8eszhgK # password is abc
+cookie:
+  expiry_days: 30
+  key: GhLLSHjWuc # Must be string
+  name: my_chocolate_cookie
+preauthorized:
+  emails:
+  - hibberdchristian@gmail.com
