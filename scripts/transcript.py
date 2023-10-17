@@ -9,6 +9,8 @@ from urllib.request import Request, urlopen
 from tempfile import NamedTemporaryFile
 import re
 import whisper
+from transformers import AutoTokenizer, AutoModelForTokenClassification
+from transformers import pipeline
 
 def extract_rare_words(transcript, zipf_value):
 
@@ -66,3 +68,24 @@ def transcribe_audio(audio):
         transcript = result["text"]
     
     return transcript
+
+def names_entity_recognition(transcript):
+
+    class NamedEntity:
+        def __init__(self, word, entity):
+            self.word = word
+            self.entity = entity
+
+    named_entities = []
+    tokenizer = AutoTokenizer.from_pretrained("dslim/bert-base-NER")
+    model = AutoModelForTokenClassification.from_pretrained("dslim/bert-base-NER")
+
+    nlp = pipeline("ner", model=model, tokenizer=tokenizer)
+
+    ner_results = nlp(transcript)
+    for i, ne in enumerate(ner_results):
+        # Extract only those with a score of 90 of above
+        if ne[i]["score"] > 0.9:
+            named_entities.append(NamedEntity(ne[i]["word"],ne[i]["entity"]))
+    
+    return ner_results

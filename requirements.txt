@@ -17,3 +17,4 @@ wordfreq==3.0.3
 openai==0.28.1
 openai-whisper==20230918
 PyDictionary==2.0.1
+transformers==4.34.0

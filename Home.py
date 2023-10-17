@@ -34,10 +34,6 @@ language = st.sidebar.selectbox("#### Language", ["English", "中文"])
 
 if language == "English":
     home_title = "🧘 Flow Language Learning"
-    # st.markdown(
-    #     "<style>#MainMenu{visibility:hidden;}</style>",
-    #     unsafe_allow_html=True
-    # )
     st.markdown(f"""# {home_title} <span style=color:#2E9BF5><font size=5>Beta</font></span>""",unsafe_allow_html=True)
     st.markdown("""\n""")
     st.markdown("Welcome to Flow Language Learning! We here to support you all the way on your journey to fluency. "
@@ -84,6 +80,10 @@ if language == "English":
                     expander = col2.expander(f"{rare_word.word}")
                     expander.write(f"**Definition**: {rare_word.definition}")
 
+            # Present Named Entities
+            named_entities = transcript.names_entity_recognition(parsed_transcript)
+            st.write(named_entities)
+
             # Present the Test
             prompt = "Can you create 5 simple test questions based on the following transcript: " + \
                 parsed_transcript + \
@@ -124,6 +124,18 @@ if language == "English":
                     expander = col2.expander(f"{rare_word.word}")
                     expander.write(f"**Definition**: {rare_word.definition}")
 
+            # Present the Test
+            prompt = "Can you create 5 simple test questions based on the following transcript: " + \
+                audio_transcript + \
+                "Your response should be in the form of an undeclared Python List of Dictionaries with 2 keys: Question, Answer." + \
+                "In your response just provide the list, nothing else such that I can use the json.loads function to parse it."
+            test_questions = generate_response(prompt, 0.2)
+            test_questions_list = json.loads(test_questions)
+            st.markdown("#### Test")
+            for i, question in enumerate(test_questions_list):
+                with st.expander(f"Question {i+1}: {question['Question']}"):
+                    st.markdown(question['Answer'])
+
     if selected == 'Written':
         # Get Article URL
         article_url = col1.text_input("Enter Article URL")
@@ -146,6 +158,18 @@ if language == "English":
                 for rare_word in rare_words:
                     expander = col2.expander(f"{rare_word.word}")
                     expander.write(f"**Definition**: {rare_word.definition}")
+
+            # Present the Test
+            prompt = "Can you create 5 simple test questions based on the following transcript: " + \
+                article_transcript + \
+                "Your response should be in the form of an undeclared Python List of Dictionaries with 2 keys: Question, Answer." + \
+                "In your response just provide the list, nothing else such that I can use the json.loads function to parse it."
+            test_questions = generate_response(prompt, 0.2)
+            test_questions_list = json.loads(test_questions)
+            st.markdown("#### Test")
+            for i, question in enumerate(test_questions_list):
+                with st.expander(f"Question {i+1}: {question['Question']}"):
+                    st.markdown(question['Answer'])
 
 
 
