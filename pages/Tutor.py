@@ -23,16 +23,6 @@ authenticator = stauth.Authenticate(
 
 name, authentication_status, username = authenticator.login('Login', 'sidebar')
 
-if authentication_status:
-    authenticator.logout('Logout', 'sidebar')
-    st.sidebar.write(f'Welcome *{name}*',)
-elif authentication_status == False:
-    st.sidebar.error('Username/password is incorrect')
-elif authentication_status == None:
-    st.sidebar.warning('Please enter your username and password')
-
-language = st.sidebar.selectbox("#### Language", ["English", "中文"])
-
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -64,13 +54,24 @@ def chat(input_text):
     # Add assistant response to chat history
     st.session_state.messages.append({"role": "assistant", "content": response})
 
-st.title("💬 Flow Language Tutor")
+def main():
 
-# Display chat messages from history on app rerun
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+    st.title("💬 Flow Language Tutor")
 
-# React to user input
-if prompt := st.chat_input("What is up?"):
-    chat(prompt)
+    # Display chat messages from history on app rerun
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
+
+    # React to user input
+    if prompt := st.chat_input("What is up?"):
+        chat(prompt)
+
+if st.session_state["authentication_status"]:
+    authenticator.logout('Logout', 'sidebar')
+    st.sidebar.write(f'Welcome *{st.session_state["name"]}*',)
+    main()
+elif st.session_state["authentication_status"] == False:
+    st.sidebar.error('Username/password is incorrect')
+elif st.session_state["authentication_status"] == None:
+    st.sidebar.warning('Please enter your username and password')
