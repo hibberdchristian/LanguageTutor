@@ -23,6 +23,13 @@ authenticator = stauth.Authenticate(
 
 name, authentication_status, username = authenticator.login('Login', 'sidebar')
 
+if 'video' not in st.session_state:
+    st.session_state.video = ''
+if 'audio' not in st.session_state:
+    st.session_state.audio = ''
+if 'article' not in st.session_state:
+    st.session_state.article = ''
+
 home_title = "🧘 Flow Language Learning"
 st.markdown(f"""# {home_title} <span style=color:#2E9BF5><font size=5>Beta</font></span>""",unsafe_allow_html=True)
 st.markdown("""\n""")
@@ -47,7 +54,8 @@ def main():
 
     if selected == 'Video':
         # Get YouTube video ID
-        video_id = col1.text_input("Enter YouTube Video ID")
+        video_id = col1.text_input("Enter YouTube Video ID", value=st.session_state.video)
+        st.session_state.video = video_id
 
         if video_id:
             # Embed Video on Page
@@ -137,7 +145,9 @@ def main():
 
     if selected == 'Written':
         # Get Article URL
-        article_url = col1.text_input("Enter Article URL")
+        article_url = col1.text_input("Enter Article URL", value=st.session_state.article)
+        st.session_state.article = article_url
+
 
         if article_url:
             # Embed Article on Page
