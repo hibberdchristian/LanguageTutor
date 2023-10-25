@@ -3,6 +3,7 @@ import streamlit_authenticator as stauth
 from streamlit_option_menu import option_menu
 import scripts.transcript as transcript
 from youtube_transcript_api import YouTubeTranscriptApi
+import scripts.test as test
 import yaml
 from yaml import SafeLoader
 with open ("config.yaml") as file:
@@ -25,7 +26,7 @@ name, authentication_status, username = authenticator.login('Login', 'sidebar')
 home_title = "🧘 Flow Language Learning"
 st.markdown(f"""# {home_title} <span style=color:#2E9BF5><font size=5>Beta</font></span>""",unsafe_allow_html=True)
 st.markdown("""\n""")
-st.markdown("Welcome to Flow Language Learning! We here to support you all the way on your journey to fluency. "
+st.markdown("Welcome to Flow Language Learning! We are here to support you all the way on your journey to fluency. "
             "Flow take real-world content such as Videos, Podcasts, and Blogs and integrates them into an immersive learning environment. "
             "Got questions, need a few example sentences? Ask our AI Language Tutor Flow 👋")
 st.markdown("""\n""")
@@ -72,9 +73,9 @@ def main():
                     expander = col2.expander(f"{rare_word.word}")
                     expander.write(f"**Definition**: {rare_word.definition}")
 
-            # Present Named Entities
-            named_entities = transcript.names_entity_recognition(parsed_transcript)
-            st.write(named_entities)
+            # # Present Named Entities
+            # named_entities = transcript.names_entity_recognition(parsed_transcript)
+            # st.write(named_entities)
 
             # Present the Test
             prompt = "Can you create 5 simple test questions based on the following transcript: " + \
@@ -83,10 +84,13 @@ def main():
                 "In your response just provide the list, nothing else such that I can use the json.loads function to parse it."
             test_questions = generate_response(prompt, 0.2)
             test_questions_list = json.loads(test_questions)
-            st.markdown("#### Test")
+            st.markdown("#### Comprehension Test")
             for i, question in enumerate(test_questions_list):
                 with st.expander(f"Question {i+1}: {question['Question']}"):
-                    st.markdown(question['Answer'])
+                    answer = st.text_input('Answer', key=i, placeholder='Input your answer', label_visibility="hidden")
+                    if answer:
+                        st.markdown(test.mark_comprehension_answer(answer, question['Answer']))
+                        st.markdown(f"Model Answer: {question['Answer']}")
 
     if selected == 'Audio':
         # Upload audio file
@@ -123,10 +127,13 @@ def main():
                 "In your response just provide the list, nothing else such that I can use the json.loads function to parse it."
             test_questions = generate_response(prompt, 0.2)
             test_questions_list = json.loads(test_questions)
-            st.markdown("#### Test")
+            st.markdown("#### Comprehension Test")
             for i, question in enumerate(test_questions_list):
                 with st.expander(f"Question {i+1}: {question['Question']}"):
-                    st.markdown(question['Answer'])
+                    answer = st.text_input('Answer', key=i, placeholder='Input your answer', label_visibility="hidden")
+                    if answer:
+                        st.markdown(test.mark_comprehension_answer(answer, question['Answer']))
+                        st.markdown(f"Model Answer: {question['Answer']}")
 
     if selected == 'Written':
         # Get Article URL
@@ -158,10 +165,13 @@ def main():
                 "In your response just provide the list, nothing else such that I can use the json.loads function to parse it."
             test_questions = generate_response(prompt, 0.2)
             test_questions_list = json.loads(test_questions)
-            st.markdown("#### Test")
+            st.markdown("#### Comprehension Test")
             for i, question in enumerate(test_questions_list):
                 with st.expander(f"Question {i+1}: {question['Question']}"):
-                    st.markdown(question['Answer'])
+                    answer = st.text_input('Answer', key=i, placeholder='Input your answer', label_visibility="hidden")
+                    if answer:
+                        st.markdown(test.mark_comprehension_answer(answer, question['Answer']))
+                        st.markdown(f"Model Answer: {question['Answer']}")
 
 if st.session_state["authentication_status"]:
     authenticator.logout('Logout', 'sidebar')
