@@ -25,7 +25,12 @@ name, authentication_status, username = authenticator.login('Login', 'sidebar')
 
 # Initialize chat history
 if "messages" not in st.session_state:
-    st.session_state.messages = []
+    st.session_state.messages = [
+        {"role": "assistant",
+         "content": "Hey! I'm Flow. I can help you improve your language skills "
+         "through example sentences, vocabulary questions, grammar explanations, and anything else! Let's embark "
+         "on a personalized learning journey together and unlock the joy of mastering a new language."}
+    ]
 
 # Generate a response from the Google Flan T5 XXL Model
 def generate_response(input_text, temp):
