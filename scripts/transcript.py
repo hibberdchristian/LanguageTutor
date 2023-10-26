@@ -23,14 +23,15 @@ def extract_rare_words(transcript, zipf_value):
     rare_words = []
     dictionary = PyDictionary()
     words = transcript.split()
-    # Shuffle Words
+    # Shuffle Words and remove duplicates
+    words = list(set(words))
     np.random.shuffle(words)
 
     for word in words:
         if(zipf_frequency(word, 'en', wordlist='best') < zipf_value) and dictionary.meaning(word) is not None:
             rare_words.append(RareWord(word, dictionary.meaning(word)))
             # Maximum 5 words per time
-            if len(rare_words) > 4:
+            if len(rare_words) >= 4:
                 break
                               
     return rare_words
@@ -84,9 +85,13 @@ def names_entity_recognition(transcript):
     nlp = pipeline("ner", model=model, tokenizer=tokenizer)
 
     ner_results = nlp(transcript)
-    for i, ne in enumerate(ner_results):
+    for entity in ner_results:
+        score = float(entity['score'])
+        word = entity['word']
         # Extract only those with a score of 90 of above
-        if ne[i]["score"] > 0.9:
-            named_entities.append(NamedEntity(ne[i]["word"],ne[i]["entity"]))
+        if score > 0.95 and len(word) > 1 and re.match(r'^\w+$',word) is not None:
+            named_entities.append(NamedEntity(entity["word"],entity["entity"]))
+            if len(named_entities) >= 3:
+                break
     
-    return ner_results
+    return named_entities

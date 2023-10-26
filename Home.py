@@ -81,9 +81,13 @@ def main():
                     expander = col2.expander(f"{rare_word.word}")
                     expander.write(f"**Definition**: {rare_word.definition}")
 
-            # # Present Named Entities
-            # named_entities = transcript.names_entity_recognition(parsed_transcript)
-            # st.write(named_entities)
+            # Present Named Entities
+            named_entities = transcript.names_entity_recognition(parsed_transcript)
+            if named_entities:
+                col2.markdown("#### Pronouns")
+                for entity in named_entities:
+                    expander = col2.expander(f"{entity.word}")
+                    expander.write(f"**Type**: {entity.entity}")
 
             # Present the Test
             prompt = "Can you create 5 simple test questions based on the following transcript: " + \
@@ -128,6 +132,14 @@ def main():
                     expander = col2.expander(f"{rare_word.word}")
                     expander.write(f"**Definition**: {rare_word.definition}")
 
+            # Present Named Entities
+            named_entities = transcript.names_entity_recognition(audio_transcript)
+            if named_entities:
+                col2.markdown("#### Pronouns")
+                for entity in named_entities:
+                    expander = col2.expander(f"{entity.word}")
+                    expander.write(f"**Type**: {entity.entity}")
+
             # Present the Test
             prompt = "Can you create 5 simple test questions based on the following transcript: " + \
                 audio_transcript + \
@@ -167,6 +179,14 @@ def main():
                 for rare_word in rare_words:
                     expander = col2.expander(f"{rare_word.word}")
                     expander.write(f"**Definition**: {rare_word.definition}")
+
+            # Present Named Entities
+            named_entities = transcript.names_entity_recognition(article_transcript)
+            if named_entities:
+                col2.markdown("#### Pronouns")
+                for entity in named_entities:
+                    expander = col2.expander(f"{entity.word}")
+                    expander.write(f"**Type**: {entity.entity}")
 
             # Present the Test
             prompt = "Can you create 5 simple test questions based on the following transcript: " + \
