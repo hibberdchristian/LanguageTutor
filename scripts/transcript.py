@@ -1,5 +1,4 @@
-API_KEY ="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"
-
+import streamlit as st
 from wordfreq import zipf_frequency
 from PyDictionary import PyDictionary
 from langchain import HuggingFaceHub
@@ -11,6 +10,8 @@ import re
 import whisper
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 from transformers import pipeline
+
+API_KEY =st.secrets["api_keys"]["huggingface"]
 
 def extract_rare_words(transcript, zipf_value):
 

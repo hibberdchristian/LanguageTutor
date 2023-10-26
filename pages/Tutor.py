@@ -8,7 +8,7 @@ with open ("config.yaml") as file:
 
 openai.api_type = "azure"
 openai.api_version = "2023-03-15-preview"
-openai.api_key = "378219d89fce4267ac77cdbc96d3fc1e"
+openai.api_key = st.secrets["api_keys"]["openai"]
 openai.api_base = "https://ai-proxy.lab.epam.com/"
 
 st.set_page_config(layout="wide")
