@@ -24,7 +24,7 @@ name, authentication_status, username = authenticator.login('Login', 'sidebar')
 if 'video' not in st.session_state:
     st.session_state.video = ''
 if 'audio' not in st.session_state:
-    st.session_state.audio = ''
+    st.session_state.audio = None
 if 'article' not in st.session_state:
     st.session_state.article = ''
 
@@ -72,7 +72,7 @@ def main():
         audio = col1.file_uploader("Upload an Audio File", type=["mp3"])
         st.session_state.audio = audio
 
-        if audio:
+        if audio:  
             # Embed Audio Player on Page
             audio_bytes = st.session_state.audio.read()
             col1.audio(audio_bytes, format='audio/wav')
