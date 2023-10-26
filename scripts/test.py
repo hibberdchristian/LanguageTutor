@@ -1,5 +1,7 @@
 import streamlit as st
 from sentence_transformers import SentenceTransformer, util
+from pages.Tutor import generate_response
+import json
 
 @st.cache_data
 def mark_comprehension_answer(answer, model_answer):
@@ -24,3 +26,13 @@ def mark_comprehension_answer(answer, model_answer):
         response = f"Not quite right! You scored {score}% 🙊"
     
     return response
+
+@st.cache_data
+def generate_comprehension_test(transcript):
+    prompt = "Can you create 5 simple test questions based on the following transcript: " + \
+        transcript + \
+        "Your response should be in the form of an undeclared Python List of Dictionaries with 2 keys: Question, Answer." + \
+        "In your response just provide the list, nothing else such that I can use the json.loads function to parse it."
+    test_questions = generate_response(prompt, 0.2)
+    test_questions_list = json.loads(test_questions)
+    return test_questions_list

@@ -13,13 +13,18 @@ from transformers import pipeline
 
 API_KEY =st.secrets["api_keys"]["huggingface"]
 
+class RareWord:
+    def __init__(self, word, definition):
+        self.word = word
+        self.definition = definition
+
+class NamedEntity:
+    def __init__(self, word, entity):
+        self.word = word
+        self.entity = entity
+
 @st.cache_data
 def extract_rare_words(transcript, zipf_value):
-
-    class RareWord:
-        def __init__(self, word, definition):
-            self.word = word
-            self.definition = definition
 
     rare_words = []
     dictionary = PyDictionary()
@@ -77,11 +82,6 @@ def transcribe_audio(audio):
 
 @st.cache_data
 def names_entity_recognition(transcript):
-
-    class NamedEntity:
-        def __init__(self, word, entity):
-            self.word = word
-            self.entity = entity
 
     named_entities = []
     tokenizer = AutoTokenizer.from_pretrained("dslim/bert-base-NER")

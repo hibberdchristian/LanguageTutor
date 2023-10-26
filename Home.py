@@ -8,8 +8,6 @@ import yaml
 from yaml import SafeLoader
 with open ("config.yaml") as file:
     config = yaml.load(file, Loader=SafeLoader)
-from pages.Tutor import generate_response
-import json
 
 st.set_page_config(layout = "wide")
 
@@ -120,14 +118,9 @@ def create_classroom(transcript):
             expander = col2.expander(f"{entity.word}")
             expander.write(f"**Type**: {entity.entity}")
 
-    # Present the Test
-    prompt = "Can you create 5 simple test questions based on the following transcript: " + \
-        transcript + \
-        "Your response should be in the form of an undeclared Python List of Dictionaries with 2 keys: Question, Answer." + \
-        "In your response just provide the list, nothing else such that I can use the json.loads function to parse it."
-    test_questions = generate_response(prompt, 0.2)
-    test_questions_list = json.loads(test_questions)
     st.divider()
+    # Present the Test
+    test_questions_list = test.generate_comprehension_test(transcript)
     st.markdown("#### Comprehension Test")
     for i, question in enumerate(test_questions_list):
         with st.expander(f"Question {i+1}: {question['Question']}"):
