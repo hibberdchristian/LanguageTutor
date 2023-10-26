@@ -28,8 +28,6 @@ if 'audio' not in st.session_state:
 if 'article' not in st.session_state:
     st.session_state.article = ''
 
-st.write(st.session_state)
-
 container = st.container()
 col1, col2 = st.columns([4,2])
 
