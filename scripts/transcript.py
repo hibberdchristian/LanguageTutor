@@ -13,6 +13,7 @@ from transformers import pipeline
 
 API_KEY =st.secrets["api_keys"]["huggingface"]
 
+@st.cache_data
 def extract_rare_words(transcript, zipf_value):
 
     class RareWord:
@@ -36,6 +37,7 @@ def extract_rare_words(transcript, zipf_value):
                               
     return rare_words
 
+@st.cache_data
 def summarize(transcript):
     llm = HuggingFaceHub(repo_id="facebook/bart-large-cnn", model_kwargs={"temperature":0.5}, huggingfacehub_api_token=API_KEY)
     return llm("Please provide a summary of the following transcript: " + transcript) 
@@ -48,6 +50,7 @@ def parse_transcript(transcript):
     transcript_text = transcript_text.replace(".", ".\n")
     return transcript_text
 
+@st.cache_data
 def scrape_article(article_url):
     req = Request(article_url, headers={'User-Agent': 'Mozilla/5.0'})
     page = urlopen(req)
@@ -59,6 +62,7 @@ def scrape_article(article_url):
         transcript += f"{element.text} \n"
     return transcript
 
+@st.cache_data
 def transcribe_audio(audio):
 
     with NamedTemporaryFile(suffix="mp3") as temp:
@@ -71,6 +75,7 @@ def transcribe_audio(audio):
     
     return transcript
 
+@st.cache_data
 def names_entity_recognition(transcript):
 
     class NamedEntity:

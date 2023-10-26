@@ -1,5 +1,7 @@
+import streamlit as st
 from sentence_transformers import SentenceTransformer, util
 
+@st.cache_data
 def mark_comprehension_answer(answer, model_answer):
     
     model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')

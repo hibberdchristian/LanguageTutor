@@ -30,6 +30,8 @@ if 'audio' not in st.session_state:
 if 'article' not in st.session_state:
     st.session_state.article = ''
 
+st.write(st.session_state)
+
 container = st.container()
 col1, col2 = st.columns([4,2])
 
@@ -70,10 +72,11 @@ def main():
     if selected == 'Audio':
         # Upload audio file
         audio = col1.file_uploader("Upload an Audio File", type=["mp3"])
+        st.session_state.audio = audio
 
         if audio:
             # Embed Audio Player on Page
-            audio_bytes = audio.read()
+            audio_bytes = st.session_state.audio.read()
             col1.audio(audio_bytes, format='audio/wav')
 
             # Present the Transcript
