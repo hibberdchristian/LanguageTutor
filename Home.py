@@ -74,7 +74,7 @@ def main():
 
         if audio:  
             # Embed Audio Player on Page
-            audio_bytes = st.session_state.audio.read()
+            audio_bytes = audio.read()
             col1.audio(audio_bytes, format='audio/wav')
 
             # Present the Transcript
