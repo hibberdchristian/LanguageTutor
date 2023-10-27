@@ -12,6 +12,13 @@ openai.api_key = st.secrets["api_keys"]["openai"]
 openai.api_base = "https://ai-proxy.lab.epam.com/"
 
 st.set_page_config(layout="wide")
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
 authenticator = stauth.Authenticate(
     config['credentials'],
