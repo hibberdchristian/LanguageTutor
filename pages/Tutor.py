@@ -6,10 +6,7 @@ from yaml import SafeLoader
 with open ("config.yaml") as file:
     config = yaml.load(file, Loader=SafeLoader)
 
-openai.api_type = "azure"
-openai.api_version = "2023-03-15-preview"
 openai.api_key = st.secrets["api_keys"]["openai"]
-openai.api_base = "https://ai-proxy.lab.epam.com/"
 
 st.set_page_config(layout="wide")
 hide_streamlit_style = """
@@ -42,7 +39,7 @@ if "messages" not in st.session_state:
 # Generate a response from the Google Flan T5 XXL Model
 def generate_response(input_text, temp):
     completion = openai.ChatCompletion.create(
-        engine = "gpt-35-turbo",
+        model = "gpt-3.5-turbo",
         max_tokens = 500,
         temperature = temp,
         messages = [
