@@ -4,7 +4,9 @@ from streamlit_option_menu import option_menu
 import scripts.transcript as ts
 from youtube_transcript_api import YouTubeTranscriptApi
 import scripts.test as test
+import scripts.utilities as utilities
 import yaml
+import re
 from yaml import SafeLoader
 with open ("config.yaml") as file:
     config = yaml.load(file, Loader=SafeLoader)
@@ -61,14 +63,15 @@ def main():
 
     if selected == 'Video':
         # Get YouTube video ID
-        video_id = col1.text_input("Enter YouTube Video ID", value=st.session_state.video)
-        st.session_state.video = video_id
+        video_url = col1.text_input("Enter YouTube Video URL", value=st.session_state.video)
+        video_id = utilities.extract_video_id(video_url)
+        st.session_state.video = video_url
 
-        if video_id:
+        if video_url:
             # Embed Video on Page
-            col1.video(f"https://www.youtube.com/watch?v={st.session_state.video}")
+            col1.video(f"{st.session_state.video}")
             # Get the transcript
-            raw_transcript = YouTubeTranscriptApi.get_transcript(st.session_state.video, preserve_formatting=True)
+            raw_transcript = YouTubeTranscriptApi.get_transcript(video_id, preserve_formatting=True)
             transcript = ts.parse_transcript(raw_transcript)
             create_classroom(transcript)
     
@@ -114,14 +117,6 @@ def create_classroom(transcript):
         for rare_word in rare_words:
             expander = col2.expander(f"{rare_word.word}")
             expander.write(f"**Definition**: {rare_word.definition}")
-
-    # Present Named Entities
-    named_entities = ts.names_entity_recognition(transcript)
-    if named_entities:
-        col2.markdown("#### Pronouns")
-        for entity in named_entities:
-            expander = col2.expander(f"{entity.word}")
-            expander.write(f"**Type**: {entity.entity}")
 
     st.divider()
     # Present the Test
