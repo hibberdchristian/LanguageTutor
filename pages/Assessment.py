@@ -1,4 +1,27 @@
 import streamlit as st
+import sqlite3
+
+# Connect to the database
+conn = sqlite3.connect('database.db')
+cursor = conn.cursor()
+
+# Create the employees table if it doesn't exist
+cursor.execute('''CREATE TABLE IF NOT EXISTS employees
+                  (id INTEGER PRIMARY KEY, name TEXT, salary REAL)''')
+
+# Define the data for the new row
+name = 'John Doe'
+salary = 5000
+
+# Insert the data into the table
+cursor.execute("INSERT INTO employees (name, salary) VALUES (?, ?)", (name, salary))
+
+# Commit the changes to the database
+conn.commit()
+
+# Close the cursor and the connection
+cursor.close()
+conn.close()
 
 # Define the questions and their corresponding answers
 questions = [
