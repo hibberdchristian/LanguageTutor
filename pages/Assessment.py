@@ -1,29 +1,7 @@
 import streamlit as st
 import json
-import sqlite3
 from scripts.test import cefr_score
-
-# # Connect to the database
-# conn = sqlite3.connect('database.db')
-# cursor = conn.cursor()
-
-# # Create the employees table if it doesn't exist
-# cursor.execute('''CREATE TABLE IF NOT EXISTS employees
-#                   (id INTEGER PRIMARY KEY, name TEXT, salary REAL)''')
-
-# # Define the data for the new row
-# name = 'John Doe'
-# salary = 5000
-
-# # Insert the data into the table
-# cursor.execute("INSERT INTO employees (name, salary) VALUES (?, ?)", (name, salary))
-
-# # Commit the changes to the database
-# conn.commit()
-
-# # Close the cursor and the connection
-# cursor.close()
-# conn.close()
+import scripts.database as db
 
 # Load the quiz
 file_path = "resources/assessment.json"
@@ -36,6 +14,13 @@ def run_quiz():
     # Initialize the score and question index
     score = 0
     question_idx = 0
+    existing_score = db.check_user_score(st.session_state.username)
+
+    # Check if the quiz is finished
+    if existing_score:
+        st.write(f"You completed the Assessment!")
+        st.write(f"We estimate you're at CEFR level {cefr_score(existing_score)}")
+        return
     
     # Initialize the session state
     if "quiz_session_state" not in st.session_state:
@@ -62,6 +47,7 @@ def run_quiz():
         # Check if we've reached the end of the quiz
         if question_idx >= len(quiz):
             st.write(f"We estimate you're at CEFR level {cefr_score(score)}")
+            db.write_score_to_database(st.session_state.username, score)
             st.session_state.quiz_session_state = None
         else:
             st.session_state.quiz_session_state = {"score": score, "question_idx": question_idx}
@@ -72,7 +58,6 @@ def run_quiz():
 def main():
     st.title("🇬🇧 Level Assessment")
     run_quiz()
-    st.write(st.session_state)
     
 if __name__ == "__main__":
     main()

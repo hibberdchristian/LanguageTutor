@@ -24,7 +24,7 @@ class NamedEntity:
         self.entity = entity
 
 @st.cache_data
-def extract_rare_words(transcript, zipf_value):
+def extract_rare_words(transcript, zipf_lower, zipf_upper):
 
     rare_words = []
     dictionary = PyDictionary()
@@ -34,7 +34,7 @@ def extract_rare_words(transcript, zipf_value):
     np.random.shuffle(words)
 
     for word in words:
-        if(zipf_frequency(word, 'en', wordlist='best') < zipf_value) and dictionary.meaning(word) is not None:
+        if(zipf_lower <= zipf_frequency(word, 'en', wordlist='best') <= zipf_upper) and dictionary.meaning(word) is not None:
             rare_words.append(RareWord(word, dictionary.meaning(word)))
             # Maximum 5 words per time
             if len(rare_words) >= 4:

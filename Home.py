@@ -2,6 +2,7 @@ import streamlit as st
 import streamlit_authenticator as stauth
 from streamlit_option_menu import option_menu
 import scripts.transcript as ts
+import scripts.database as db
 from youtube_transcript_api import YouTubeTranscriptApi
 import scripts.test as test
 import scripts.utilities as utilities
@@ -111,7 +112,8 @@ def create_classroom(transcript):
     col2.markdown(summary)
 
     # Present the Difficult Words
-    rare_words = ts.extract_rare_words(transcript, 3.5)
+    zipf = test.zipf_value(db.check_user_score(st.session_state.username))
+    rare_words = ts.extract_rare_words(transcript, zipf["lower"], zipf["upper"])
     if rare_words:
         col2.markdown("#### Words")
         for rare_word in rare_words:

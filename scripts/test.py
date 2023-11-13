@@ -50,3 +50,17 @@ def cefr_score(score):
         return "C1"
     else:
         return "Invalid range"
+    
+def zipf_value(score):
+    if score >= 0 and score <= 45:
+        return {'lower': 7, 'upper': 8}
+    elif score >= 46 and score <= 60:
+        return {'lower': 6, 'upper': 7}
+    elif score >= 61 and score <= 75:
+        return {'lower': 4, 'upper': 6}
+    elif score >= 76 and score <= 90:
+        return {'lower': 3, 'upper': 4}
+    elif score >= 91 and score <= 100:
+        return {'lower': 1, 'upper': 3}
+    else:
+        return "Invalid range"
