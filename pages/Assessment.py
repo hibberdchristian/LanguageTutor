@@ -20,7 +20,13 @@ def run_quiz():
     if existing_score:
         st.write(f"You completed the Assessment!")
         st.write(f"We estimate you're at CEFR level {cefr_score(existing_score)}")
-        return
+        retake_button = st.button("Retake")
+        if retake_button:
+            db.remove_user_score(st.session_state.username)
+            st.session_state.quiz_session_state = {"score": 0, "question_idx": 0}
+            st.experimental_rerun()
+        else:
+            return
     
     # Initialize the session state
     if "quiz_session_state" not in st.session_state:
@@ -48,7 +54,7 @@ def run_quiz():
         if question_idx >= len(quiz):
             st.write(f"We estimate you're at CEFR level {cefr_score(score)}")
             db.write_score_to_database(st.session_state.username, score)
-            st.session_state.quiz_session_state = None
+            st.session_state.quiz_session_state = {"score": 0, "question_idx": 0}
         else:
             st.session_state.quiz_session_state = {"score": score, "question_idx": question_idx}
             # Reload the app to load the next question

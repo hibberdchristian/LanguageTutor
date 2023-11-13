@@ -119,6 +119,16 @@ def create_classroom(transcript):
         for rare_word in rare_words:
             expander = col2.expander(f"{rare_word.word}")
             expander.write(f"**Definition**: {rare_word.definition}")
+            create_flashcard = expander.button(":red[Create Flashcard]", key={rare_word.word})
+            if create_flashcard:
+                result = db.save_flashcard(st.session_state.username, rare_word.word)
+                if result == "success":
+                    expander.success(f"Flashcard for '{rare_word.word}' created!")
+                elif result == "exist":
+                    expander.warning(f"Flashcard for '{rare_word.word}' already exists.")
+                else:
+                    expander.error("Failed to create flashcard.")
+
 
     st.divider()
     # Present the Test

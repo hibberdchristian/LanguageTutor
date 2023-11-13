@@ -1,5 +1,7 @@
 import streamlit as st
 import streamlit_authenticator as stauth
+import scripts.database as db
+import scripts.test as test
 import pandas as pd
 import numpy as np
 import yaml
@@ -40,7 +42,7 @@ def main():
     st.subheader("User Profile")
     st.write(f"Name: {st.session_state.name}")
     st.write(f"Username: {st.session_state.username}")
-    st.write(f"Current Lanaguage Level: 82")
+    st.write(f"Current Lanaguage Level: {test.cefr_score(db.check_user_score(st.session_state.username))}")
     st.write(f"Bio: Passionate polyglot with an insatiable thirst for linguistic knowledge, constantly exploring new languages and cultures with boundless enthusiasm.")
 
     st.subheader("Learning Progress")

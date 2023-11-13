@@ -57,3 +57,39 @@ def remove_user_score(username):
     # Close the cursor and the connection
     cursor.close()
     conn.close()
+
+def save_flashcard(username, word):
+    # Connect to the database and create a cursor
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+
+    # Create the flashcards table if it doesn't exist
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS flashcards (
+            id INTEGER PRIMARY KEY,
+            username TEXT NOT NULL,
+            word TEXT NOT NULL
+        );
+    """)
+
+    # Check if the word already exists
+    cursor.execute("SELECT id FROM flashcards WHERE username = ? AND word = ?", (username, word))
+    result = cursor.fetchone()
+    if result is not None:
+        # Close the cursor and connection
+        cursor.close()
+        conn.close()
+        return "exist"
+
+    # Insert the new flashcard
+    try:
+        cursor.execute("INSERT INTO flashcards (username, word) VALUES (?, ?)", (username, word))
+        conn.commit()
+        return "success"
+    except sqlite3.Error:
+        conn.rollback()
+        return "failure"
+    finally:
+        # Close the cursor and connection
+        cursor.close()
+        conn.close()
