@@ -1,0 +1,242 @@
+[
+    {
+        "question": "tired -> exhasted; small -> tiny; angry -> ___",
+        "options": ["vexed", "furious", "annoyed", "irritated"],
+        "answer": "furious",
+        "cefr": "A2"
+    },
+    {
+        "question": "Our teacher doesn't ___ us use mobile phones in class.",
+        "options": ["allow", "let", "make", "forbid"],
+        "answer": "let",
+        "cefr": "A1"
+    },
+    {
+        "question": "Breakfast, lunch and dinner are ___.",
+        "options": ["foodtimes", "eatings", "meals", "food"],
+        "answer": "meals",
+        "cefr": "A2"
+    },
+    {
+        "question": "The weather was great - it was really ___.",
+        "options": ["sunshine", "strong sun", "sun", "sunny"],
+        "answer": "sunny",
+        "cefr": "B1"
+    },
+    {
+        "question": "Argh! This noise is giving me a ___.",
+        "options": ["headache", "headhurt", "headpain", "headouch"],
+        "answer": "headache",
+        "cefr": "A2"
+    },
+    {
+        "question": "He studies math at university. He's a ___.",
+        "options": ["professor", "pupil", "student", "studier"],
+        "answer": "student",
+        "cefr": "A1"
+    },
+    {
+        "question": "Your father's brother's daughter is your ___.",
+        "options": ["niece", "sister", "cousina", "cousin"],
+        "answer": "cousin",
+        "cefr": "A1"
+    },
+    {
+        "question": "I don't ___ going out tonight",
+        "options": ["like", "want to", "feel like", "have mood to"],
+        "answer": "feel like",
+        "cefr": "A1"
+    },
+    {
+        "question": "She doesn't have brothers or sisters - she's ___.",
+        "options": ["an only child", "a lonely child", "a single child", "an alone child"],
+        "answer": "an only child",
+        "cefr": "A1"
+    },
+    {
+        "question": "She's a police officer, so she has to wear a ___ at work.",
+        "options": ["clothes", "uniform", "police suit", "dress"],
+        "answer": "uniform",
+        "cefr": "A2"
+    },
+    {
+        "question": "Do you live in a house or ___?",
+        "options": ["an apartment", "a village", "a home", "a building"],
+        "answer": "an apartment",
+        "cefr": "A2"
+    },
+    {
+        "question": "Are you planning to go ___ for the weekend?",
+        "options": ["off", "away", "far", "out"],
+        "answer": "away",
+        "cefr": "A2"
+    },
+    {
+        "question": "You can't smoke here - please ___ your cigarette.",
+        "options": ["put away", "put out", "put up with", "put down"],
+        "answer": "put out",
+        "cefr": "B1"
+    },
+    {
+        "question": "If I were you, I'd leave earlier, so you can avoid the ___.",
+        "options": ["traffic time", "peak hour", "rush hour", "peak time"],
+        "answer": "rush hour",
+        "cefr": "A2"
+    },
+    {
+        "question": "I love all fruit, but ___ strawberries.",
+        "options": ["especially", "specifically", "specially", "mostly"],
+        "answer": "especially",
+        "cefr": "A2"
+    },
+    {
+        "question": "It's a good idea, but it's ___ that the boss will agree with you.",
+        "options": ["likely", "unlikely", "improbably", "unprobably"],
+        "answer": "unlikely",
+        "cefr": "B1"
+    },
+    {
+        "question": "Every time I wear something white, I ___ coffee or orange juice or something on it.",
+        "options": ["let", "pour", "spill", "drop"],
+        "answer": "spill",
+        "cefr": "A2"
+    },
+    {
+        "question": "I don't like my job very much. I'm going to ___ and look for another one.",
+        "options": ["resign", "finish", "retire", "fire"],
+        "answer": "resign",
+        "cefr": "B1"
+    },
+    {
+        "question": "What time do you go to ___ every day?",
+        "options": ["workplace", "job", "work", "office"],
+        "answer": "work",
+        "cefr": "B2"
+    },
+    {
+        "question": "He's a waiter; she's a ___.",
+        "options": ["waitree", "waitress", "waiter", "waiteress"],
+        "answer": "waitress",
+        "cefr": "B1"
+    },
+    {
+        "question": "Her hair isn't completely straight - it's slightly ___.",
+        "options": ["waved", "wavy", "bent", "curl"],
+        "answer": "wavy",
+        "cefr": "B1"
+    },
+    {
+        "question": "They never argue and they enjoy spending time together. = They ___.",
+        "options": ["like themselves very much", "relationship very good", "get on very well", "relate very well"],
+        "answer": "get on very well",
+        "cefr": "B1"
+    },
+    {
+        "question": "I'm a bit lost. Can you tell me how to ___ to the university?",
+        "options": ["reach", "go", "find", "get"],
+        "answer": "get",
+        "cefr": "B1"
+    },
+    {
+        "question": "'Happy' is the ___ of 'sad'.",
+        "options": ["oppositive", "opposed", "oppose", "opposite"],
+        "answer": "opposite",
+        "cefr": "A2"
+    },
+    {
+        "question": "What time is it? It's 6.15 - a ___ past six.",
+        "options": ["fourth", "fifteen", "quarter", "half"],
+        "answer": "quarter",
+        "cefr": "A2"
+    },
+    {
+        "question": "I've been so busy all week. I don't want to do anything at the weekend - I'll just stay at home and ___.",
+        "options": ["make a rest", "make it easy", "take it easy", "have a relax"],
+        "answer": "take it easy",
+        "cefr": "B1"
+    },
+    {
+        "question": "We nearly missed the plane - we were only just ___.",
+        "options": ["timely", "on time", "in time for", "in time"],
+        "answer": "in time",
+        "cefr": "B2"
+    },
+    {
+        "question": "apartment -> flat; elevator -> lift; gasoline -> ___",
+        "options": ["coal", "fuel", "oil", "petrol"],
+        "answer": "petrol",
+        "cefr": "A2"
+    },
+    {
+        "question": "I ___ swimming every Saturday morning.",
+        "options": ["play", "play", "do", "go"],
+        "answer": "go",
+        "cefr": "A2"
+    },
+    {
+        "question": "Excuse me, I think you've ___ a mistake in our bill.",
+        "options": ["had", "done", "given", "made"],
+        "answer": "made",
+        "cefr": "A2"
+    },
+    {
+        "question": "Fruit and vegetables are healthy. = Fruit and vegetables are ___.",
+        "options": ["healthsome", "benefit for you", "good for health", "good for you"],
+        "answer": "good for you",
+        "cefr": "A2"
+    },
+    {
+        "question": "Do you want a ___ or a return ticket?",
+        "options": ["outbound", "lonely", "one-journey", "single"],
+        "answer": "single",
+        "cefr": "B2"
+    },
+    {
+        "question": "friendly -> unfriendly; honest -> dishonest; polite -> ___",
+        "options": ["inpolite", "unpolite", "impolite", "dispolite"],
+        "answer": "impolite",
+        "cefr": "B1"
+    },
+    {
+        "question": "imagine -> imaginative; rely -> reliable; ambition -> ___",
+        "options": ["ambitionful", "ambitious", "ambitiable", "ambitiative"],
+        "answer": "ambitious",
+        "cefr": "B1"
+    },
+    {
+        "question": "What size do you need: small, medium or ___?",
+        "options": ["huge", "giant", "large", "big"],
+        "answer": "large",
+        "cefr": "A2"
+    },
+    {
+        "question": "I've got all the data. Now I just need to ___ the answer.",
+        "options": ["think out", "work out", "count out", "make out"],
+        "answer": "work out",
+        "cefr": "B1"
+    },
+    {
+        "question": "He's so ___! I'm not ___ in anything he says.",
+        "options": ["bored ... interesting", "bored ... interested", "boring ... interesting", "boring ... interested"],
+        "answer": "boring ... interested",
+        "cefr": "B1"
+    },
+    {
+        "question": "Let's go to a restaurant for dinner tonight = Let's ___ tonight.",
+        "options": ["eat away", "eat outside", "eat outwardly", "eat out"],
+        "answer": "eat out",
+        "cefr": "B1"
+    },
+    {
+        "question": "At the weekend I ___ with some friends -  we went for a curry, then had a couple of drinks.",
+        "options": ["enjoyed", "played", "went out", "went for fun"],
+        "answer": "went out",
+        "cefr": "B1"
+    },
+    {
+        "question": "It's the ___ building in the city",
+        "options": ["highest", "greatest", "tallest", "fattest"],
+        "answer": "tallest",
+        "cefr": "B2"
+    }
+]

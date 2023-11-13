@@ -36,3 +36,17 @@ def generate_comprehension_test(transcript):
     test_questions = generate_response(prompt, 0.2)
     test_questions_list = json.loads(test_questions)
     return test_questions_list
+
+def cefr_score(score):
+    if score >= 0 and score <= 45:
+        return "A1"
+    elif score >= 46 and score <= 60:
+        return "A2"
+    elif score >= 61 and score <= 75:
+        return "B1"
+    elif score >= 76 and score <= 90:
+        return "B2"
+    elif score >= 91 and score <= 100:
+        return "C1"
+    else:
+        return "Invalid range"
