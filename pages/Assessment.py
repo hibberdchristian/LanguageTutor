@@ -1,7 +1,31 @@
 import streamlit as st
+import streamlit_authenticator as stauth
 import json
 from scripts.test import cefr_score
 import scripts.database as db
+import yaml
+from yaml import SafeLoader
+with open ("config.yaml") as file:
+    config = yaml.load(file, Loader=SafeLoader)
+
+st.set_page_config(layout="wide")
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
+
+authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
+
+name, authentication_status, username = authenticator.login('Login', 'sidebar')
 
 # Load the quiz
 file_path = "resources/assessment.json"
@@ -65,5 +89,11 @@ def main():
     st.title("🇬🇧 Level Assessment")
     run_quiz()
     
-if __name__ == "__main__":
+if st.session_state["authentication_status"]:
+    authenticator.logout('Logout', 'sidebar')
+    st.sidebar.write(f'Welcome *{st.session_state["name"]}*',)
     main()
+elif st.session_state["authentication_status"] == False:
+    st.sidebar.error('Username/password is incorrect')
+elif st.session_state["authentication_status"] == None:
+    st.sidebar.warning('Please enter your username and password')

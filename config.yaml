@@ -3,7 +3,11 @@ credentials:
     christianhibberd:
       email: hibberdchristian@gmail.com
       name: Christian
-      password: $2b$12$noFJD0XeFuOFFYUmyrRjBOjy9dY4LT/s2CCPoYnFyuv7Kp8eszhgK # password is abc
+      password: $2b$12$EqvZ6Bw4XpF720Y/zbVvSec84da9C6ygiD7jQEy8zfsEwGi3zNs3W # password is abc
+    shuanghibberd:
+      email: xshannon0@gmail.com
+      name: Shuang
+      password: $2b$12$tft6WFj7OJYlqtkOgqNnuOwyIr2RzcarRxAij1J6iWrEB71rCMmCm # password is def
 cookie:
   expiry_days: 30
   key: GhLLSHjWuc # Must be string
