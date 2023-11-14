@@ -61,7 +61,7 @@ def main():
                 default_index=0,
                 orientation="horizontal",
             )
-
+        
     if selected == 'Video':
         # Get YouTube video ID
         video_url = col1.text_input("Enter YouTube Video URL", value=st.session_state.video)
@@ -74,7 +74,7 @@ def main():
             # Get the transcript
             raw_transcript = YouTubeTranscriptApi.get_transcript(video_id, preserve_formatting=True)
             transcript = ts.parse_transcript(raw_transcript)
-            create_classroom(transcript)
+            create_classroom(transcript, selected, video_url)
     
     if selected == 'Audio':
         # Upload audio file
@@ -88,7 +88,7 @@ def main():
 
             # Present the Transcript
             transcript = ts.transcribe_audio(audio)
-            create_classroom(transcript)
+            create_classroom(transcript, selected, "NA")
 
     if selected == 'Written':
         # Get Article URL
@@ -98,9 +98,9 @@ def main():
         if article_url:
             # Embed Article on Page
             transcript = ts.scrape_article(article_url)
-            create_classroom(transcript)
+            create_classroom(transcript, selected, article_url)
 
-def create_classroom(transcript):
+def create_classroom(transcript, selected, url):
         
     expander = col1.expander('Full Transcript')
     expander.write(transcript)
@@ -109,7 +109,9 @@ def create_classroom(transcript):
     col2.markdown("""\n""")
     col2.markdown("#### Summary")
     summary = ts.summarize(transcript)
+    cefr_level = ts.assess_cefr(transcript)[0]['language_level']
     col2.markdown(summary)
+    col2.markdown(f"Estimated difficulty: {cefr_level}")
 
     # Present the Difficult Words
     zipf = test.zipf_value(db.check_user_score(st.session_state.username))
@@ -140,6 +142,16 @@ def create_classroom(transcript):
             if answer:
                 st.markdown(test.mark_comprehension_answer(answer, question['Answer']))
                 st.markdown(f"Model Answer: {question['Answer']}")
+
+    st.divider()
+    # Recommend to other learners
+    st.markdown("Would you recommend this content to other language learners?")
+    if st.button("👍"):
+        result = db.save_content(selected, url, transcript, cefr_level)
+        if result == "success" or "exists":
+            st.success("Thanks for your feedback!")
+        else:
+            st.error("Error")
 
 if st.session_state["authentication_status"]:
     authenticator.logout('Logout', 'sidebar')

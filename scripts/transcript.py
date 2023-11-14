@@ -10,6 +10,8 @@ import re
 import whisper
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 from transformers import pipeline
+from pages.Tutor import generate_response
+import json
 
 API_KEY =st.secrets["api_keys"]["huggingface"]
 
@@ -79,6 +81,16 @@ def transcribe_audio(audio):
         transcript = result["text"]
     
     return transcript
+
+@st.cache_data
+def assess_cefr(transcript):
+    prompt = "Can you assess the difficulty of the following transcript based on the Common European Framework of Reference for Languages (CEFR): " + \
+        transcript + \
+        "Your response should be in the form of an undeclared Python List of Dictionaries with one key: language_level" + \
+        "In your response just provide the list, nothing else such that I can use the json.loads function to parse it."
+    cefr_level = generate_response(prompt, 0.2)
+    cefr_level_list = json.loads(cefr_level)
+    return cefr_level_list
 
 @st.cache_data
 def names_entity_recognition(transcript):

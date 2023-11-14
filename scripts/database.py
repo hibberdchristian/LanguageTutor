@@ -119,3 +119,66 @@ def extract_flashcards_from_database(username):
         flashcards_json.append(flashcard_json)
 
     return json.dumps(flashcards_json)
+
+def save_content(type, url, transcript, cefr_level):
+    # Connect to the database and create a cursor
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+
+    # Create the content table if it doesn't exist
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS content (
+            id INTEGER PRIMARY KEY,
+            type TEXT NOT NULL,
+            url TEXT NOT NULL,
+            transcript TEXT NOT NULL,
+            cefr_level TEXT NOT NULL
+        );
+    """)
+
+    # Check if the content already exists
+    cursor.execute("SELECT id FROM content WHERE url = ?", (url,))
+    result = cursor.fetchone()
+    if result is not None:
+        # Close the cursor and connection
+        cursor.close()
+        conn.close()
+        return "exist"
+
+    # Insert the new flashcard
+    try:
+        cursor.execute("INSERT INTO content (type, url, transcript, cefr_level) VALUES (?, ?, ?, ?)", (type, url, transcript, cefr_level))
+        conn.commit()
+        return "success"
+    except sqlite3.Error as e:
+        conn.rollback()
+        return "failure: " + str(e)
+    finally:
+        # Close the cursor and connection
+        cursor.close()
+        conn.close()
+
+def extract_content_from_database(cefr_level):
+    # Connect to the SQLite database
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+
+    # Fetch flashcards from the database
+    cursor.execute("SELECT type, url, transcript FROM content WHERE cefr_level = ?", (cefr_level,))
+    contents = cursor.fetchall()
+
+    # Close the database connection
+    conn.close()
+
+    # Convert flashcards to a JSON object
+    contents_json = []
+    for content in contents:
+        type, url, transcript = content
+        content_json = {
+            "type": type,
+            "url": url,
+            "transcript": transcript
+        }
+        contents_json.append(content_json)
+
+    return json.dumps(contents_json)
