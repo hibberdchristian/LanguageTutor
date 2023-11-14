@@ -39,7 +39,7 @@ def run_quiz():
     # Create a Streamlit form to display the quiz
     form = st.form(key="quiz_form")
     form.write(f"Question {question_idx+1}: {quiz[question_idx]['question']}")
-    selected_option = form.radio("Select your answer:", quiz[question_idx]["options"])
+    selected_option = form.radio("Select your answer:", quiz[question_idx]["options"], index=None)
     submitted = form.form_submit_button("Next")
     
     # Check if the answer is correct

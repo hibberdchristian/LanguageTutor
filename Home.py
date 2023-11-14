@@ -121,7 +121,7 @@ def create_classroom(transcript):
             expander.write(f"**Definition**: {rare_word.definition}")
             create_flashcard = expander.button(":red[Create Flashcard]", key={rare_word.word})
             if create_flashcard:
-                result = db.save_flashcard(st.session_state.username, rare_word.word)
+                result = db.save_flashcard(st.session_state.username, rare_word.word, str(rare_word.definition))
                 if result == "success":
                     expander.success(f"Flashcard for '{rare_word.word}' created!")
                 elif result == "exist":
