@@ -1,4 +1,5 @@
 import sqlite3
+import json
 
 def write_score_to_database(username, score):
     # Connect to the database
@@ -94,3 +95,27 @@ def save_flashcard(username, word, definition):
         # Close the cursor and connection
         cursor.close()
         conn.close()
+
+def extract_flashcards_from_database(username):
+    # Connect to the SQLite database
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+
+    # Fetch flashcards from the database
+    cursor.execute("SELECT word, definition FROM flashcards WHERE username = ?", (username,))
+    flashcards = cursor.fetchall()
+
+    # Close the database connection
+    conn.close()
+
+    # Convert flashcards to a JSON object
+    flashcards_json = []
+    for flashcard in flashcards:
+        word, definition = flashcard
+        flashcard_json = {
+            "word": word,
+            "definition": definition
+        }
+        flashcards_json.append(flashcard_json)
+
+    return json.dumps(flashcards_json)
