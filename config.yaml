@@ -8,6 +8,86 @@ credentials:
       email: xshannon0@gmail.com
       name: Shuang
       password: $2b$12$tft6WFj7OJYlqtkOgqNnuOwyIr2RzcarRxAij1J6iWrEB71rCMmCm # password is def
+    liangzhao0923:
+      email: liangzhao0923@gmail.com
+      name: Zhao Liang
+      password: $2b$12$tPNolx0RD2s0pIqGdK325.SVlsTOAvAsXsXkVJMJQtFdASZjqGDQa
+    panjingyi:
+      email: 547695641@qq.com
+      name: Pan Jingyi
+      password: $2b$12$0ucmTwg58Ez4rjWGu1Nuhe0tjNza1EMKVQcgw/Jf/f6.sbic3YND.
+    vickyakira:
+      email: vickyakira@gmail.com 
+      name: Vicky
+      password: $2b$12$qdi3CLD/wP1f5uJahbfjReInzCx9CipUpV7CEY/wjApphMlDKJxru
+    cslsunny1991:
+      email: cslsunny1991@163.com
+      name: Sunny
+      password: $2b$12$KHYpBbK.K6B2x1AFV5nATud1hwv2ihLTB2mBSxKkimVdDcS6251DK
+    ryan.s.y.q:
+      email: ryan.s.y.q@gmail.com
+      name: Ryan
+      password: $2b$12$EwqpaKPZOwkJIiWVGVdJI.R1vxVafmmLewX9Z3V/ePcy5SbI90YCO
+    wtytianyuan:
+      email: wtytianyuan@163.com
+      name: Wang Tianyuan
+      password: $2b$12$OGpc0DnQGIUkx8fb.avsuer1xsaNYm0pNhitfRLDO/WONzD86tWge
+    xinli29:
+      email: xinli29@ln.hk
+      name: Li Xin
+      password: $2b$12$cKpJNdeAB31nbYl.GoSrZukFqMyhfH3x5yuagO.nueVYOU27qdHG2
+    lxlxlixi:
+      email: lxlxlixi@163.com
+      name: 
+      password: $2b$12$BCaG6cIVAs35eVC96rTiQe6VIUIyKPPe6I.VPMLGRw6hWLTG3lN0S
+    haobotian:
+      email: haobotian@ln.hk
+      name:
+      password: $2b$12$NI9AClU2YxsEFONmGdvhH.pXwCTo3BGZqmQ5dqXPRMKHzUfcdp1vq
+    languagewarrior:
+      email: 1249494584@qq.com
+      name:
+      password: $2b$12$FxgnNUpN5pgVzUTBXp93c.pmlZdVh1xwrdpQyppMHFGwNyGip0IWe
+    dongtingding:
+      email: dongtingding@ln.hk
+      name:
+      password: $2b$12$w9UnkYFfIogjHk3j6liVn.SD3BVSoAQguNuCIRdm0LKl/qLIDF6Ha
+    yiwu2:
+      email: yiwu2@ln.hk
+      name:
+      password: $2b$12$2v.DjQ8ihHaG.0SI6M633OvKhTPKDbrby/D.5we0ka3rswnDfH77i
+    jmingchong@gmail:
+      email: jmingchong@gmail.com
+      name: Jia Ming
+      password: $2b$12$rX5UO6XfGh5qI.WgmFJYUexW2oP/Ifu9RkZuUq22eqjLqk4M6kjUC
+    dk905905905:
+      email: dk905905905@hotmail.com
+      name: Wayne
+      password: $2b$12$6MtrR2OT21nvbK2.7eF5PuUoR6bQw1PfYSeci8AzHNpvz8d8cFYJ6
+    ianliren:
+      email: ianliren@live.com.my
+      name: Ian
+      password: $2b$12$nioVFzdgaBBP23UdNXeSIudfPBBr2J.Rg7XpRZ328izGtGaWrbZwu
+    bing:
+      email: 151812759@qq.com
+      name: Bing
+      password: $2b$12$c8DKcY9QSfVutVQMFzhIROy5zw3/5jUeRTy9E3NMg1rYqOuyi1ohu
+    linzhaoyu:
+      email: linzhaoyu@urbannetworkoffice.com
+      name: Zhaoyu
+      password: $2b$12$lXDNXsB7HYq1yXAOwaWVKOGgzJ1qwCfBKGzgsKrdnXxzO0UCYwkh6
+    nwucn:
+      email: nwucn@outlook.com
+      name: Nikki
+      password: $2b$12$nbXNAfv4jo.mf9VtNXG60.rQU3ac0WaYKuZDU6m.Zlqjn5IAdC7tq
+    bycathie:
+      email: bycathie@gmail.com
+      name: Cathie
+      password: $2b$12$/FoKZDeOnrgupCghKYHqfeokCwCCpOnlht.eF2U7PtkBI7ok6Nyr6
+    testytesty:
+      email: test@test.com
+      name: Mr. Test
+      password: $2b$12$PyYnWCOpWxGNA8noESibTO/9Dk.WVjnvVAgK4thpXAD7uw8ZWy/Nq # password is LinguaNova777
 cookie:
   expiry_days: 30
   key: GhLLSHjWuc # Must be string
