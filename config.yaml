@@ -86,7 +86,7 @@ credentials:
       password: $2b$12$/FoKZDeOnrgupCghKYHqfeokCwCCpOnlht.eF2U7PtkBI7ok6Nyr6
     testytesty:
       email: test@test.com
-      name: Mr. Test
+      name: Mrs. Test
       password: $2b$12$PyYnWCOpWxGNA8noESibTO/9Dk.WVjnvVAgK4thpXAD7uw8ZWy/Nq # password is LinguaNova777
 cookie:
   expiry_days: 30
