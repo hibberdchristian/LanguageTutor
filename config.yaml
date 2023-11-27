@@ -88,6 +88,14 @@ credentials:
       email: test@test.com
       name: Mrs. Test
       password: $2b$12$PyYnWCOpWxGNA8noESibTO/9Dk.WVjnvVAgK4thpXAD7uw8ZWy/Nq # password is LinguaNova777
+    dwongab:
+      email: Dwongab@connect.ust.hk
+      name: David
+      password: $2b$12$wnmxg5L0tmfcXLYDm8mEg.hQKJ8JQvXK07qK8u2EeRXxAtFx/ry1e
+    leeyusuen:
+      email: leeyusuen@gmail.com
+      name: Yuriy
+      password: $2b$12$KdKW1lXB3dXIAYxguqkxd.7UTAzOYJ0YZD1JXaIEkuABnaXhHcnCS
 cookie:
   expiry_days: 30
   key: GhLLSHjWuc # Must be string
