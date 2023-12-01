@@ -96,6 +96,10 @@ credentials:
       email: leeyusuen@gmail.com
       name: Yuriy
       password: $2b$12$KdKW1lXB3dXIAYxguqkxd.7UTAzOYJ0YZD1JXaIEkuABnaXhHcnCS
+    wenqianwang:
+      email: wenqianwanghkbu@gmail.com
+      name: 
+      password: $2b$12$CVicvgHtAOdpBGrXpYyOJe2QynzvwRUJw9n0buzc9xKVroA8UszTG
 cookie:
   expiry_days: 30
   key: GhLLSHjWuc # Must be string
