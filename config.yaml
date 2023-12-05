@@ -100,6 +100,10 @@ credentials:
       email: wenqianwanghkbu@gmail.com
       name: 
       password: $2b$12$CVicvgHtAOdpBGrXpYyOJe2QynzvwRUJw9n0buzc9xKVroA8UszTG
+    heting:
+      email: heting.1101@gmail.com
+      name: He Ting
+      password: $2b$12$chnyPzYwQS8jr9WeC2vA9uziobhJ.OOcTqOpDctPTUJ5YIrYk7342
 cookie:
   expiry_days: 30
   key: GhLLSHjWuc # Must be string
