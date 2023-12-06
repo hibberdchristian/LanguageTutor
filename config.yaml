@@ -104,6 +104,10 @@ credentials:
       email: heting.1101@gmail.com
       name: He Ting
       password: $2b$12$chnyPzYwQS8jr9WeC2vA9uziobhJ.OOcTqOpDctPTUJ5YIrYk7342
+    alexpeng:
+      email: alexpenguvic@gmail.com
+      name: Alex Peng
+      password: $2b$12$xbdyWfa3OcFKivaAIrUSLO/r2./YhE06fhlhV.eTTtJmj2gd1MKG.
 cookie:
   expiry_days: 30
   key: GhLLSHjWuc # Must be string
